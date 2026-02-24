@@ -49,7 +49,6 @@ Fill in `.env`:
 ```env
 DATABASE_URL="postgresql://user:password@host:5432/rivalblog"
 JWT_SECRET="your-super-secret-jwt-key"
-PORT=3000
 ```
 
 ```bash
