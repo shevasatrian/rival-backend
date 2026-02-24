@@ -5,7 +5,6 @@ import {
   ForbiddenException,
   NotFoundException,
   BadRequestException,
-//   BadRequestException,
 } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -19,7 +18,6 @@ export class BlogsService {
   async create(userId: string, dto: CreateBlogDto) {
     const baseSlug = slugify(dto.title, { lower: true, strict: true });
 
-    // Ensure unique slug
     let slug = baseSlug;
     let counter = 1;
 
