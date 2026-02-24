@@ -1,98 +1,208 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# RivalBlog — Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+REST API for RivalBlog, a fullstack blog platform. Built with NestJS, Prisma, and PostgreSQL.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🔗 Links
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+| | URL |
+|---|---|
+| **Live API** | `https://rival-backend-production.up.railway.app` |
+| **Frontend Repository** | `https://github.com/shevasatrian` |
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## 🛠️ Tech Stack
 
-## Compile and run the project
+- **NestJS** — Node.js framework
+- **Prisma** — ORM
+- **PostgreSQL** — Database
+- **JWT** — Authentication
+- **@nestjs/throttler** — Rate limiting
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## 🚀 Setup Instructions
 
-# production mode
-$ npm run start:prod
-```
+### Prerequisites
 
-## Run tests
+- Node.js >= 18
+- PostgreSQL database
+
+### Installation
 
 ```bash
-# unit tests
-$ npm run test
+# 1. Clone repository
+git clone https://github.com/yourusername/rivalblog-backend.git
+cd rivalblog-backend
 
-# e2e tests
-$ npm run test:e2e
+# 2. Install dependencies
+npm install
 
-# test coverage
-$ npm run test:cov
+# 3. Copy environment file
+cp .env.example .env
 ```
 
-## Deployment
+Fill in `.env`:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+```env
+DATABASE_URL="postgresql://user:password@host:5432/rivalblog"
+JWT_SECRET="your-super-secret-jwt-key"
+PORT=3000
+```
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# 4. Run database migrations
+npx prisma migrate deploy
+
+# 5. Start development server
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+API will run on `http://localhost:8000`.
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## 📁 Project Structure
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```
+src/
+├── main.ts                        # App entry point
+├── app.module.ts                  # Root module
+├── auth/
+│   ├── auth.controller.ts         # POST /auth/register, /auth/login
+│   ├── auth.service.ts            # Register & login logic
+│   └── dto/
+├── blogs/
+│   ├── blogs.controller.ts        # Protected blog routes
+│   ├── blogs.service.ts           # Blog business logic
+│   └── dto/
+├── public/
+│   ├── public.controller.ts       # Public feed & blog detail
+│   └── public.module.ts
+├── prisma/
+│   └── prisma.service.ts
+└── common/
+    ├── guards/
+        └── jwt-auth.guard.ts
 
-## Support
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## 📋 API Endpoints
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Public (no auth required)
 
-## License
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/public/feed` | Get paginated published blogs |
+| `GET` | `/public/blogs/:slug` | Get blog detail by slug |
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Auth
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/auth/register` | Register new user |
+| `POST` | `/auth/login` | Login, returns JWT |
+
+### Blogs (JWT required)
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/blogs/my` | Get current user's blogs |
+| `GET` | `/blogs/:id` | Get blog by ID (owner only) |
+| `POST` | `/blogs` | Create new blog |
+| `PATCH` | `/blogs/:id` | Update blog (owner only) |
+| `DELETE` | `/blogs/:id` | Delete blog (owner only) |
+| `POST` | `/blogs/:id/like` | Like a blog |
+| `DELETE` | `/blogs/:id/like` | Unlike a blog |
+| `GET` | `/blogs/:id/like/status` | Check if current user liked |
+| `GET` | `/blogs/:id/comments` | Get comments |
+| `POST` | `/blogs/:id/comments` | Post a comment |
+
+---
+
+## 🛡️ Rate Limiting
+
+| Endpoint | Limit |
+|---|---|
+| `POST /auth/login` | 5 requests / minute |
+| `POST /auth/register` | 3 requests / minute |
+| `GET /public/feed` | 3 requests / second, 30 / minute |
+| `GET /public/blogs/:slug` | 3 requests / second, 30 / minute |
+| All other endpoints | 5 requests / second, 100 / minute |
+
+
+---
+
+## 🏗️ Architecture Notes
+
+**Route Structure**
+
+Two controller groups are used intentionally:
+- `/public/*` — unauthenticated routes accessible by anyone
+- `/blogs/*` — protected routes behind `JwtAuthGuard`
+
+This separation makes access control explicit and easy to audit.
+
+**Slug Generation**
+
+Slugs are auto-generated from blog titles using `slugify`, with a counter suffix appended if a slug already exists (`my-blog` → `my-blog-1` → `my-blog-2`).
+
+**Ownership Checks**
+
+All mutating blog operations (`update`, `delete`, `getById`) verify that the requesting user owns the resource before proceeding, returning `403 Forbidden` if not.
+
+---
+
+## ⚖️ Tradeoffs Made
+
+| Decision | What was chosen | What was sacrificed |
+|---|---|---|
+| JWT in localStorage (frontend) | Simple implementation | Vulnerable to XSS; httpOnly cookies safer |
+| No refresh token | Simpler auth flow | Users get logged out when token expires |
+| `_count` for likes/comments | Single query efficiency | Count is not real-time (requires page reload) |
+| No pagination on comments | Simpler implementation | Could be slow on blogs with many comments |
+
+---
+
+## 🔧 What I Would Improve
+
+- Stronger password validation on register currently only requires minimum 6 characters, would add regex validation to enforce at least one uppercase letter, one number, and one symbol for better security
+- Add Swagger documentation (`@nestjs/swagger`)
+- Search on public feed would add a q query parameter to filter blogs by title keyword using Prisma's contains filter
+- Add structured logging with Pino
+- Soft delete for blogs instead of permanently deleting blogs, would add an isDeleted boolean field in the schema and filter it out in queries, making recovery possible
+- Add updatedAt to feed response currently only createdAt is returned, showing updatedAt gives readers more accurate information about content freshness
+
+---
+
+## 📈 How I'd Scale to 1 Million Users
+
+**Database**
+- Add read replicas — direct all `SELECT` queries to replicas, writes to primary
+- Connection pooling with PgBouncer
+- Indexes on `slug`, `userId`, `createdAt`, `isPublished`
+- Partition `likes` and `comments` tables by `blogId` range for large datasets
+
+**Caching**
+- Cache public feed in Redis with short TTL (30 seconds) — eliminates the majority of DB reads since feed is the most visited endpoint
+- Cache blog detail pages at CDN level using `stale-while-revalidate`
+
+**API**
+- Horizontal scaling behind a load balancer
+- Rate limiting per user ID instead of IP only to prevent abuse from shared IPs
+- Replace live like counting with precomputed counters updated via background jobs
+
+**Background Jobs**
+- BullMQ + Redis for async processing (notifications, summary generation, counter updates)
+- Decouples slow operations from the HTTP request cycle
+
+**Observability**
+- Structured logging with Pino shipped to a log aggregator
+- Distributed tracing to identify bottlenecks
+- Alerting on p99 latency and error rates
+
+---
