@@ -8,12 +8,12 @@ async function bootstrap() {
     origin: 'https://rival-frontend.vercel.app',
     credentials: true,
   });
-  await app.listen(process.env.PORT || 8000);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
     }),
   );
+  await app.listen(process.env.PORT || 8000);
 }
 bootstrap();
