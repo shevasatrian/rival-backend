@@ -9,7 +9,7 @@ REST API for RivalBlog, a fullstack blog platform. Built with NestJS, Prisma, an
 | | URL |
 |---|---|
 | **Live API** | `https://rival-backend-production.up.railway.app` |
-| **Frontend Repository** | `https://github.com/shevasatrian` |
+| **Frontend Repository** | `https://github.com/shevasatrian/rival-frontend` |
 
 ---
 
